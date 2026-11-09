@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<robot name = "robot_arm">
+
+<link name ="base_link">
+    <visual>
+        <origin xyz = "0 0 0.06" rpy = "-1.55 0 0"/>
+        <geometry>
+            <mesh filename = "package://robot_arm/meshes/BaseHousing.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </visual>
+</link>
+
+<link name="rotation_link">
+    <visual>
+      <origin xyz="0 -0.002 0.160" rpy="-1.55 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/rotation.STL"
+              scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+</link>
+
+
+
+
+</robot>
