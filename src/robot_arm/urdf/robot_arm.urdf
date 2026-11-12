@@ -2,68 +2,80 @@
 
 <robot name = "robot_arm">
 
-<link name ="base_link">
-    <visual>
-        <origin xyz = "-0.05 -0.05 0.06" rpy = "-1.55 0 0"/>
+    <link name="world"/>
+
+    
+
+    <link name ="base_link">
+        <visual>
+            <origin xyz = "-0.05 -0.05 0.06" rpy = "-1.55 0 0"/>
+            <geometry>
+                <mesh filename = "package://robot_arm/meshes/BaseHousing.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name ="world_to_base" type="fixed">
+
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        
+    </joint>
+
+    <link name="rotation_link">
+        <visual>
+        <origin xyz="-0.05 -0.052 0.162" rpy="-1.55 0 0"/>
         <geometry>
-            <mesh filename = "package://robot_arm/meshes/BaseHousing.STL" scale="0.001 0.001 0.001"/>
+            <mesh filename="package://robot_arm/meshes/rotation.STL"
+                scale="0.001 0.001 0.001"/>
         </geometry>
-    </visual>
-</link>
+        </visual>
+    </link>
 
-<link name="rotation_link">
-    <visual>
-      <origin xyz="-0.05 -0.052 0.162" rpy="-1.55 0 0"/>
-      <geometry>
-        <mesh filename="package://robot_arm/meshes/rotation.STL"
-              scale="0.001 0.001 0.001"/>
-      </geometry>
-    </visual>
-</link>
+    <joint name="joint_1" type="continuous">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link = "base_link"/>
+        <child link = "rotation_link"/>
+        <axis xyz = "0 0 1"/>
+    </joint>
 
-<joint name="joint_1" type="continuous">
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <parent link = "base_link"/>
-    <child link = "rotation_link"/>
-    <axis xyz = "0 0 1"/>
-</joint>
+    <link name="biceps_link">
+        <visual>
+            <origin xyz = "-0.023 0.29 -0.039" rpy="0 0 -1.59"/>
+            <geometry>
+                <mesh filename="package://robot_arm/meshes/biceps.STL"
+                    scale = "0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
 
-<link name="biceps_link">
-    <visual>
-        <origin xyz = "-0.023 0.29 -0.039" rpy="0 0 -1.59"/>
-        <geometry>
-            <mesh filename="package://robot_arm/meshes/biceps.STL"
-                  scale = "0.001 0.001 0.001"/>
-        </geometry>
-    </visual>
-</link>
+    <joint name="joint_2" type ="revolute">
+        <origin xyz= "0 0 0.12" rpy = "0 0 0"/>
+        <parent link = "rotation_link"/>
+        <child link = "biceps_link"/>
+        <axis xyz = "1 0 0"/>
+        <limit lower = "0" upper = "3.141593" effort = "5.0" velocity = "1.0"/>
 
-<joint name="joint_2" type ="revolute">
-    <origin xyz= "0 0 0.12" rpy = "0 0 0"/>
-    <parent link = "rotation_link"/>
-    <child link = "biceps_link"/>
-    <axis xyz = "1 0 0"/>
-    <limit lower = "0" upper = "3.141593"/>
+    </joint>
 
-</joint>
+    <link name = "vorarm_link">
+        <visual>
+            <origin xyz = "-0.035 0.25 0.04" rpy = "1.566 3.15 1.566"/>
+            <geometry>
+                <mesh filename="package://robot_arm/meshes/vorarm.STL"
+                    scale = "0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
 
-<link name = "vorarm_link">
-    <visual>
-        <origin xyz = "-0.035 0.25 0.04" rpy = "1.566 3.15 1.566"/>
-        <geometry>
-            <mesh filename="package://robot_arm/meshes/vorarm.STL"
-                  scale = "0.001 0.001 0.001"/>
-        </geometry>
-    </visual>
-</link>
+    <joint name="joint_3" type ="revolute">
+        <origin xyz= "0 0.25 0" rpy = "0 0 0"/>
+        <parent link = "biceps_link"/>
+        <child link = "vorarm_link"/>
+        <axis xyz = "1 0 0"/>
+        <limit lower = "-2.2" upper = "2.2" effort = "5.0" velocity = "1.0"/>
 
-<joint name="joint_3" type ="revolute">
-    <origin xyz= "0 0.25 0" rpy = "0 0 0"/>
-    <parent link = "biceps_link"/>
-    <child link = "vorarm_link"/>
-    <axis xyz = "1 0 0"/>
-    <limit lower = "-2.2" upper = "2.2"/>
-
-</joint>
+    </joint>
 
 </robot>
