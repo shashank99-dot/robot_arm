@@ -4,15 +4,22 @@
 
     <link name="world"/>
 
-    
-
     <link name ="base_link">
+
         <visual>
             <origin xyz = "-0.05 -0.05 0.06" rpy = "-1.55 0 0"/>
             <geometry>
                 <mesh filename = "package://robot_arm/meshes/BaseHousing.STL" scale="0.001 0.001 0.001"/>
             </geometry>
         </visual>
+
+        <collision>
+            <origin xyz = "-0.05 -0.05 0.06" rpy = "-1.55 0 0"/>
+            <geometry>
+                <mesh filename = "package://robot_arm/meshes/BaseHousing.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+        
     </link>
 
     <joint name ="world_to_base" type="fixed">
@@ -25,12 +32,20 @@
 
     <link name="rotation_link">
         <visual>
-        <origin xyz="-0.05 -0.052 0.162" rpy="-1.55 0 0"/>
-        <geometry>
-            <mesh filename="package://robot_arm/meshes/rotation.STL"
-                scale="0.001 0.001 0.001"/>
-        </geometry>
+            <origin xyz="-0.05 -0.052 0.162" rpy="-1.55 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_arm/meshes/rotation.STL"
+                    scale="0.001 0.001 0.001"/>
+            </geometry>
         </visual>
+
+        <collision>
+            <origin xyz="-0.05 -0.052 0.162" rpy="-1.55 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_arm/meshes/rotation.STL"
+                    scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
     </link>
 
     <joint name="joint_1" type="continuous">
@@ -48,6 +63,13 @@
                     scale = "0.001 0.001 0.001"/>
             </geometry>
         </visual>
+        <collision>
+            <origin xyz = "-0.023 0.29 -0.039" rpy="0 0 -1.59"/>
+            <geometry>
+                <mesh filename="package://robot_arm/meshes/biceps.STL"
+                    scale = "0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
     </link>
 
     <joint name="joint_2" type ="revolute">
@@ -67,6 +89,13 @@
                     scale = "0.001 0.001 0.001"/>
             </geometry>
         </visual>
+        <collision>
+            <origin xyz = "-0.035 0.25 0.04" rpy = "1.566 3.15 1.566"/>
+            <geometry>
+                <mesh filename="package://robot_arm/meshes/vorarm.STL"
+                    scale = "0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
     </link>
 
     <joint name="joint_3" type ="revolute">

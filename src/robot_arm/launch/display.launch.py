@@ -10,6 +10,7 @@ def generate_launch_description():
     package_directory = Path(get_package_share_directory('robot_arm'))
 
     urdf_file = package_directory / 'urdf' / 'robot_arm.urdf'
+    rviz_config = package_directory / 'rviz' / 'display.rviz'
 
     robot_description = urdf_file.read_text()
 
@@ -29,6 +30,7 @@ def generate_launch_description():
     rviz = Node(
         package="rviz2",
         executable="rviz2",
+        arguments=['-d', str(rviz_config)],
         output='screen',
     )
 
